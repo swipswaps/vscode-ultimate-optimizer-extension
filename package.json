@@ -1,0 +1,190 @@
+{
+  "name": "vscode-ultimate-optimizer",
+  "displayName": "Ultimate VSCode Optimizer",
+  "description": "Comprehensive performance optimization, backup, and monitoring for VSCode and extensions",
+  "version": "1.0.0",
+  "publisher": "swipswaps",
+  "engines": {
+    "vscode": "^1.74.0"
+  },
+  "categories": [
+    "Other",
+    "Extension Packs"
+  ],
+  "keywords": [
+    "performance",
+    "optimization",
+    "augment",
+    "backup",
+    "monitoring",
+    "telemetry",
+    "memory",
+    "cpu",
+    "settings"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "ultimateOptimizer.optimizePerformance",
+        "title": "Optimize Performance",
+        "category": "Ultimate Optimizer",
+        "icon": "$(rocket)"
+      },
+      {
+        "command": "ultimateOptimizer.backupSettings",
+        "title": "Backup Settings",
+        "category": "Ultimate Optimizer",
+        "icon": "$(archive)"
+      },
+      {
+        "command": "ultimateOptimizer.restoreSettings",
+        "title": "Restore Settings",
+        "category": "Ultimate Optimizer",
+        "icon": "$(history)"
+      },
+      {
+        "command": "ultimateOptimizer.showDashboard",
+        "title": "Show Performance Dashboard",
+        "category": "Ultimate Optimizer",
+        "icon": "$(dashboard)"
+      },
+      {
+        "command": "ultimateOptimizer.monitorPerformance",
+        "title": "Monitor Performance",
+        "category": "Ultimate Optimizer",
+        "icon": "$(pulse)"
+      },
+      {
+        "command": "ultimateOptimizer.optimizeAugment",
+        "title": "Optimize Augment Extension",
+        "category": "Ultimate Optimizer",
+        "icon": "$(zap)"
+      },
+      {
+        "command": "ultimateOptimizer.eliminateTelemetry",
+        "title": "Eliminate Telemetry",
+        "category": "Ultimate Optimizer",
+        "icon": "$(shield)"
+      },
+      {
+        "command": "ultimateOptimizer.analyzePerformance",
+        "title": "Analyze Current Performance",
+        "category": "Ultimate Optimizer",
+        "icon": "$(search)"
+      },
+      {
+        "command": "ultimateOptimizer.resetToDefaults",
+        "title": "Reset to Defaults",
+        "category": "Ultimate Optimizer",
+        "icon": "$(refresh)"
+      }
+    ],
+    "menus": {
+      "commandPalette": [
+        {
+          "command": "ultimateOptimizer.optimizePerformance"
+        },
+        {
+          "command": "ultimateOptimizer.backupSettings"
+        },
+        {
+          "command": "ultimateOptimizer.restoreSettings"
+        },
+        {
+          "command": "ultimateOptimizer.showDashboard"
+        },
+        {
+          "command": "ultimateOptimizer.monitorPerformance"
+        },
+        {
+          "command": "ultimateOptimizer.optimizeAugment"
+        },
+        {
+          "command": "ultimateOptimizer.eliminateTelemetry"
+        },
+        {
+          "command": "ultimateOptimizer.analyzePerformance"
+        },
+        {
+          "command": "ultimateOptimizer.resetToDefaults"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "Ultimate VSCode Optimizer",
+      "properties": {
+        "ultimateOptimizer.autoOptimize": {
+          "type": "boolean",
+          "default": false,
+          "description": "Automatically apply optimizations on startup"
+        },
+        "ultimateOptimizer.monitoringEnabled": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable real-time performance monitoring"
+        },
+        "ultimateOptimizer.backupBeforeOptimization": {
+          "type": "boolean",
+          "default": true,
+          "description": "Always backup settings before applying optimizations"
+        },
+        "ultimateOptimizer.optimizationProfile": {
+          "type": "string",
+          "enum": [
+            "conservative",
+            "balanced",
+            "aggressive"
+          ],
+          "default": "balanced",
+          "description": "Optimization profile to use"
+        },
+        "ultimateOptimizer.showNotifications": {
+          "type": "boolean",
+          "default": true,
+          "description": "Show optimization notifications"
+        },
+        "ultimateOptimizer.monitoringInterval": {
+          "type": "number",
+          "default": 30,
+          "minimum": 10,
+          "maximum": 300,
+          "description": "Performance monitoring interval in seconds"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile && npm run lint",
+    "lint": "eslint src --ext ts",
+    "test": "node ./out/test/runTest.js"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.74.0",
+    "@types/node": "16.x",
+    "@typescript-eslint/eslint-plugin": "^5.45.0",
+    "@typescript-eslint/parser": "^5.45.0",
+    "eslint": "^8.28.0",
+    "typescript": "^4.9.4"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/swipswaps/vscode-ultimate-optimizer-extension.git"
+  },
+  "bugs": {
+    "url": "https://github.com/swipswaps/vscode-ultimate-optimizer-extension/issues"
+  },
+  "homepage": "https://github.com/swipswaps/vscode-ultimate-optimizer-extension#readme",
+  "license": "MIT",
+  "icon": "media/icon.png",
+  "galleryBanner": {
+    "color": "#1e1e1e",
+    "theme": "dark"
+  }
+}
