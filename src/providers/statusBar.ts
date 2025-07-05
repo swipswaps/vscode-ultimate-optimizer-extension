@@ -44,7 +44,7 @@ export class StatusBarProvider {
         score: number;
         issues: string[];
         backgroundColor?: vscode.ThemeColor;
-    } {
+        } {
         const config = vscode.workspace.getConfiguration();
         const extensions = vscode.extensions.all;
         const activeExtensions = extensions.filter(ext => ext.isActive).length;

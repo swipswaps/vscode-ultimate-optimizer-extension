@@ -27,30 +27,30 @@ export class DashboardProvider {
         this.panel.webview.onDidReceiveMessage(
             message => {
                 switch (message.command) {
-                    case 'optimize':
-                        vscode.commands.executeCommand('ultimateOptimizer.optimizePerformance');
-                        break;
-                    case 'optimizeAugment':
-                        vscode.commands.executeCommand('ultimateOptimizer.optimizeAugment');
-                        break;
-                    case 'eliminateTelemetry':
-                        vscode.commands.executeCommand('ultimateOptimizer.eliminateTelemetry');
-                        break;
-                    case 'backup':
-                        vscode.commands.executeCommand('ultimateOptimizer.backupSettings');
-                        break;
-                    case 'restore':
-                        vscode.commands.executeCommand('ultimateOptimizer.restoreSettings');
-                        break;
-                    case 'monitor':
-                        vscode.commands.executeCommand('ultimateOptimizer.monitorPerformance');
-                        break;
-                    case 'analyze':
-                        vscode.commands.executeCommand('ultimateOptimizer.analyzePerformance');
-                        break;
-                    case 'refresh':
-                        this.refreshDashboard();
-                        break;
+                case 'optimize':
+                    vscode.commands.executeCommand('ultimateOptimizer.optimizePerformance');
+                    break;
+                case 'optimizeAugment':
+                    vscode.commands.executeCommand('ultimateOptimizer.optimizeAugment');
+                    break;
+                case 'eliminateTelemetry':
+                    vscode.commands.executeCommand('ultimateOptimizer.eliminateTelemetry');
+                    break;
+                case 'backup':
+                    vscode.commands.executeCommand('ultimateOptimizer.backupSettings');
+                    break;
+                case 'restore':
+                    vscode.commands.executeCommand('ultimateOptimizer.restoreSettings');
+                    break;
+                case 'monitor':
+                    vscode.commands.executeCommand('ultimateOptimizer.monitorPerformance');
+                    break;
+                case 'analyze':
+                    vscode.commands.executeCommand('ultimateOptimizer.analyzePerformance');
+                    break;
+                case 'refresh':
+                    this.refreshDashboard();
+                    break;
                 }
             },
             undefined,
@@ -66,7 +66,7 @@ export class DashboardProvider {
     }
 
     private refreshDashboard(): void {
-        if (!this.panel) return;
+        if (!this.panel) {return;}
 
         const data = this.gatherDashboardData();
         this.panel.webview.postMessage({
@@ -100,7 +100,7 @@ export class DashboardProvider {
             augmentOptimized = config.get('augment.auth.tokenRefreshInterval') === 3600000 &&
                               config.get('augment.network.timeout') === 60000;
         }
-        if (augmentOptimized) score += 10;
+        if (augmentOptimized) {score += 10;}
 
         return {
             timestamp: new Date().toISOString(),

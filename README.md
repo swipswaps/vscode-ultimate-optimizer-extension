@@ -2,7 +2,10 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![VSCode](https://img.shields.io/badge/VSCode-1.74+-blue.svg)](https://code.visualstudio.com/)
+[![Version](https://img.shields.io/badge/Version-0.1.0--beta-orange.svg)](https://github.com/swipswaps/vscode-ultimate-optimizer-extension)
 [![Performance](https://img.shields.io/badge/Performance-Optimized-green.svg)](https://github.com/swipswaps/vscode-ultimate-optimizer-extension)
+
+> **⚠️ BETA VERSION**: This extension is currently in beta testing. Please backup your settings before use and report any issues on GitHub.
 
 Transform your VSCode performance with research-based optimizations, comprehensive backup system, and real-time monitoring - all from within VSCode!
 
@@ -182,12 +185,53 @@ The extension provides detailed performance analysis:
 2. Select the backup from before optimization
 3. Restart VSCode to apply restored settings
 
+## 🛠️ Development
+
+### **Beta Testing**
+This extension is currently in beta. Help us improve it:
+
+1. **Test thoroughly** in a safe environment
+2. **Backup your settings** before using
+3. **Report issues** on GitHub with detailed information
+4. **Suggest improvements** based on your experience
+
+### **Development Setup**
+```bash
+# Clone the repository
+git clone https://github.com/swipswaps/vscode-ultimate-optimizer-extension.git
+cd vscode-ultimate-optimizer-extension
+
+# Run setup script (installs dependencies, compiles, lints)
+./setup-dev.sh
+
+# Open in VSCode
+code .
+
+# Press F5 to launch Extension Development Host for testing
+```
+
+### **Development Commands**
+```bash
+npm run compile          # Compile TypeScript
+npm run watch            # Watch for changes and auto-compile
+npm run lint             # Run ESLint
+npm run lint -- --fix    # Auto-fix ESLint issues
+```
+
+### **Code Quality**
+- **TypeScript** with strict type checking
+- **ESLint** with comprehensive rules
+- **Extensive comments** for code comprehension
+- **Error handling** with user-friendly messages
+- **Progress indicators** for long-running operations
+
 ## 🤝 Contributing
 
 Found a bug or have a feature request? We'd love to hear from you!
 
 - **Issues**: [GitHub Issues](https://github.com/swipswaps/vscode-ultimate-optimizer-extension/issues)
 - **Feature Requests**: [GitHub Discussions](https://github.com/swipswaps/vscode-ultimate-optimizer-extension/discussions)
+- **Beta Feedback**: Use GitHub Issues with "beta-feedback" label
 
 ## 📄 License
 

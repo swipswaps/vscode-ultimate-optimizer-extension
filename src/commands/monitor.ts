@@ -189,31 +189,31 @@ export class PerformanceMonitor {
         let score = 0;
         
         // Memory score (0-25)
-        if (metrics.memoryUsage < 200) score += 25;
-        else if (metrics.memoryUsage < 300) score += 20;
-        else if (metrics.memoryUsage < 400) score += 15;
-        else if (metrics.memoryUsage < 500) score += 10;
-        else score += 5;
+        if (metrics.memoryUsage < 200) {score += 25;}
+        else if (metrics.memoryUsage < 300) {score += 20;}
+        else if (metrics.memoryUsage < 400) {score += 15;}
+        else if (metrics.memoryUsage < 500) {score += 10;}
+        else {score += 5;}
 
         // Extension score (0-25)
-        if (metrics.activeExtensions < 10) score += 25;
-        else if (metrics.activeExtensions < 15) score += 20;
-        else if (metrics.activeExtensions < 20) score += 15;
-        else if (metrics.activeExtensions < 30) score += 10;
-        else score += 5;
+        if (metrics.activeExtensions < 10) {score += 25;}
+        else if (metrics.activeExtensions < 15) {score += 20;}
+        else if (metrics.activeExtensions < 20) {score += 15;}
+        else if (metrics.activeExtensions < 30) {score += 10;}
+        else {score += 5;}
 
         // Optimization score (0-50)
-        if (metrics.settingsOptimized) score += 25;
-        if (metrics.augmentOptimized) score += 25;
+        if (metrics.settingsOptimized) {score += 25;}
+        if (metrics.augmentOptimized) {score += 25;}
 
-        if (score >= 80) return '🟢 Excellent';
-        if (score >= 60) return '🟡 Good';
-        if (score >= 40) return '🟠 Fair';
+        if (score >= 80) {return '🟢 Excellent';}
+        if (score >= 60) {return '🟡 Good';}
+        if (score >= 40) {return '🟠 Fair';}
         return '🔴 Poor';
     }
 
     private checkForPerformanceIssues(): void {
-        if (this.metrics.length < 3) return;
+        if (this.metrics.length < 3) {return;}
 
         const recent = this.metrics.slice(-3);
         const avgMemory = recent.reduce((sum, m) => sum + m.memoryUsage, 0) / recent.length;

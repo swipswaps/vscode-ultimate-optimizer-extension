@@ -1,44 +1,83 @@
+/**
+ * Optimizer Manager
+ *
+ * Handles all performance optimization operations including:
+ * - General VSCode performance optimizations
+ * - Augment extension specific optimizations
+ * - Telemetry elimination
+ * - Performance analysis and reporting
+ *
+ * @version 0.1.0-beta
+ */
+
 import * as vscode from 'vscode';
 import { BackupManager } from './backup';
 
+/**
+ * Main optimizer manager class
+ *
+ * Coordinates all optimization operations and integrates with
+ * the backup manager for safety.
+ */
 export class OptimizerManager {
-    private backupManager: BackupManager;
+    /** Backup manager instance for creating safety backups */
+    private readonly backupManager: BackupManager;
 
-    constructor(private context: vscode.ExtensionContext) {
+    /**
+     * Initialize the optimizer manager
+     *
+     * @param context - VSCode extension context for state management
+     */
+    constructor(private readonly context: vscode.ExtensionContext) {
         this.backupManager = new BackupManager(context);
     }
 
+    /**
+     * Main performance optimization method
+     *
+     * Applies comprehensive performance optimizations based on the selected
+     * optimization profile. Includes automatic backup if enabled.
+     *
+     * Optimization profiles:
+     * - conservative: Minimal changes, maximum compatibility
+     * - balanced: Recommended optimizations (default)
+     * - aggressive: Maximum performance, some features disabled
+     *
+     * @throws Error if optimization fails
+     */
     async optimizePerformance(): Promise<void> {
+        // Get user configuration settings
         const config = vscode.workspace.getConfiguration('ultimateOptimizer');
         const shouldBackup = config.get('backupBeforeOptimization', true);
         const profile = config.get('optimizationProfile', 'balanced');
 
         try {
-            // Show progress
+            // Show progress notification with detailed steps
             await vscode.window.withProgress({
                 location: vscode.ProgressLocation.Notification,
-                title: "Ultimate Optimizer",
+                title: 'Ultimate Optimizer',
                 cancellable: false
             }, async (progress) => {
-                progress.report({ increment: 0, message: "Starting optimization..." });
+                progress.report({ increment: 0, message: 'Starting optimization...' });
 
-                // Backup if enabled
+                // Create safety backup if enabled in settings
                 if (shouldBackup) {
-                    progress.report({ increment: 20, message: "Creating backup..." });
+                    progress.report({ increment: 20, message: 'Creating backup...' });
                     await this.backupManager.createBackup();
                 }
 
-                // Apply optimizations based on profile
-                progress.report({ increment: 40, message: "Applying optimizations..." });
+                // Apply optimizations based on selected profile
+                progress.report({ increment: 40, message: 'Applying optimizations...' });
                 await this.applyOptimizations(profile as string);
 
-                progress.report({ increment: 80, message: "Finalizing..." });
-                await new Promise(resolve => setTimeout(resolve, 500)); // Brief pause for UX
+                // Brief pause for better user experience
+                progress.report({ increment: 80, message: 'Finalizing...' });
+                await new Promise(resolve => setTimeout(resolve, 500));
 
-                progress.report({ increment: 100, message: "Complete!" });
+                progress.report({ increment: 100, message: 'Complete!' });
             });
 
-            // Show success message
+            // Show success message with action options
             const message = `✅ Performance optimization complete! VSCode has been optimized using the ${profile} profile.`;
             const action = await vscode.window.showInformationMessage(
                 message,
@@ -46,6 +85,7 @@ export class OptimizerManager {
                 'Restart VSCode'
             );
 
+            // Handle user action selection
             if (action === 'Show Dashboard') {
                 vscode.commands.executeCommand('ultimateOptimizer.showDashboard');
             } else if (action === 'Restart VSCode') {
@@ -53,6 +93,8 @@ export class OptimizerManager {
             }
 
         } catch (error) {
+            // Log error and show user-friendly message
+            console.error('Optimization failed:', error);
             vscode.window.showErrorMessage(`Optimization failed: ${error}`);
         }
     }
@@ -61,10 +103,10 @@ export class OptimizerManager {
         try {
             await vscode.window.withProgress({
                 location: vscode.ProgressLocation.Notification,
-                title: "Optimizing Augment Extension",
+                title: 'Optimizing Augment Extension',
                 cancellable: false
             }, async (progress) => {
-                progress.report({ increment: 0, message: "Analyzing Augment settings..." });
+                progress.report({ increment: 0, message: 'Analyzing Augment settings...' });
 
                 // Check if Augment is installed
                 const augmentExtension = vscode.extensions.getExtension('augment.vscode-augment');
@@ -72,10 +114,10 @@ export class OptimizerManager {
                     throw new Error('Augment extension not found');
                 }
 
-                progress.report({ increment: 30, message: "Applying Augment optimizations..." });
+                progress.report({ increment: 30, message: 'Applying Augment optimizations...' });
                 await this.applyAugmentOptimizations();
 
-                progress.report({ increment: 100, message: "Augment optimization complete!" });
+                progress.report({ increment: 100, message: 'Augment optimization complete!' });
             });
 
             const message = '🚀 Augment optimization complete! Keyring access storms eliminated, network timeouts fixed, and performance dramatically improved.';
@@ -94,17 +136,17 @@ export class OptimizerManager {
         try {
             await vscode.window.withProgress({
                 location: vscode.ProgressLocation.Notification,
-                title: "Eliminating Telemetry",
+                title: 'Eliminating Telemetry',
                 cancellable: false
             }, async (progress) => {
-                progress.report({ increment: 0, message: "Scanning telemetry settings..." });
+                progress.report({ increment: 0, message: 'Scanning telemetry settings...' });
 
                 const telemetrySettings = this.getTelemetryEliminationSettings();
                 
-                progress.report({ increment: 50, message: "Disabling telemetry..." });
+                progress.report({ increment: 50, message: 'Disabling telemetry...' });
                 await this.applySettings(telemetrySettings);
 
-                progress.report({ increment: 100, message: "Telemetry eliminated!" });
+                progress.report({ increment: 100, message: 'Telemetry eliminated!' });
             });
 
             vscode.window.showInformationMessage(

@@ -18,24 +18,24 @@ export class BackupManager {
             
             await vscode.window.withProgress({
                 location: vscode.ProgressLocation.Notification,
-                title: "Creating Backup",
+                title: 'Creating Backup',
                 cancellable: false
             }, async (progress) => {
-                progress.report({ increment: 0, message: "Preparing backup..." });
+                progress.report({ increment: 0, message: 'Preparing backup...' });
 
                 // Create backup directory
                 fs.mkdirSync(backupPath, { recursive: true });
 
-                progress.report({ increment: 25, message: "Backing up settings..." });
+                progress.report({ increment: 25, message: 'Backing up settings...' });
                 await this.backupSettings(backupPath);
 
-                progress.report({ increment: 50, message: "Backing up extensions..." });
+                progress.report({ increment: 50, message: 'Backing up extensions...' });
                 await this.backupExtensions(backupPath);
 
-                progress.report({ increment: 75, message: "Creating manifest..." });
+                progress.report({ increment: 75, message: 'Creating manifest...' });
                 await this.createBackupManifest(backupPath);
 
-                progress.report({ increment: 100, message: "Backup complete!" });
+                progress.report({ increment: 100, message: 'Backup complete!' });
             });
 
             // Store latest backup path
@@ -98,20 +98,20 @@ export class BackupManager {
 
             await vscode.window.withProgress({
                 location: vscode.ProgressLocation.Notification,
-                title: "Restoring Backup",
+                title: 'Restoring Backup',
                 cancellable: false
             }, async (progress) => {
-                progress.report({ increment: 0, message: "Preparing restoration..." });
+                progress.report({ increment: 0, message: 'Preparing restoration...' });
 
                 const backupPath = selectedBackup.detail!;
 
-                progress.report({ increment: 30, message: "Restoring settings..." });
+                progress.report({ increment: 30, message: 'Restoring settings...' });
                 await this.restoreSettings(backupPath);
 
-                progress.report({ increment: 70, message: "Restoring extensions..." });
+                progress.report({ increment: 70, message: 'Restoring extensions...' });
                 await this.restoreExtensions(backupPath);
 
-                progress.report({ increment: 100, message: "Restoration complete!" });
+                progress.report({ increment: 100, message: 'Restoration complete!' });
             });
 
             const action = await vscode.window.showInformationMessage(
@@ -143,18 +143,18 @@ export class BackupManager {
         try {
             await vscode.window.withProgress({
                 location: vscode.ProgressLocation.Notification,
-                title: "Resetting to Defaults",
+                title: 'Resetting to Defaults',
                 cancellable: false
             }, async (progress) => {
-                progress.report({ increment: 0, message: "Creating safety backup..." });
+                progress.report({ increment: 0, message: 'Creating safety backup...' });
                 
                 // Create a safety backup first
                 await this.createBackup();
 
-                progress.report({ increment: 50, message: "Resetting settings..." });
+                progress.report({ increment: 50, message: 'Resetting settings...' });
                 await this.resetAllSettings();
 
-                progress.report({ increment: 100, message: "Reset complete!" });
+                progress.report({ increment: 100, message: 'Reset complete!' });
             });
 
             const action = await vscode.window.showInformationMessage(
